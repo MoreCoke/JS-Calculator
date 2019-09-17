@@ -1,0 +1,133 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+//variables
+$primary:#062145;
+$secondary:#041936;
+$info:#00C4FF;
+$accent:#6C00FF;
+$plain:#E8E8E8;
+$helight:#000000;
+
+html{
+    height: 100%;
+}
+body{
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $plain;
+    font-family: 'Roboto', sans-serif;
+}
+
+.calculator{
+    width: 350px;
+    min-height: 525px;
+    background: $primary;
+    box-shadow: 0px 20px 40px #00000066;
+    border-radius: 20px;
+    &-monitor{
+        box-sizing: border-box;
+        padding: 16px 20px;
+        width: 350px;
+        min-height: 109px;
+        border-radius: 20px 20px 0 0;
+        background:$secondary;      
+    }
+    &-storage{
+        color: $info;
+        font-size: 19px;
+        word-break: break-all;
+        text-align: right;
+    }
+    &-show{
+        color: white;
+        font-size: 56px;
+        word-break: break-all;
+        text-align: right;
+    }
+    &-keyboard{
+        width: 350px;
+        height: 416px;
+        padding: 16px 8px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}
+
+.btn{
+    width: 72px;
+    height: 64px;
+    background: transparent;
+    border-radius: 16px;
+    border:none;
+    color:white;
+    font-size: 24px;
+    cursor: pointer;
+    &:hover{
+        background: lighten($primary, 15%);
+    }
+    &-operator{
+        background: $secondary;
+        color:$info;
+    }
+    &-reset,&-del{
+        color: $info;
+    }
+    &-equal{
+        width: 155px;
+        background: transparent linear-gradient(90deg, $info 0%, $accent 100%) 0% 0% no-repeat padding-box;
+        &:hover{
+            background: transparent linear-gradient(90deg, $accent 0%, $info 100%) 0% 0% no-repeat padding-box;
+        }
+    }
+}
