@@ -15,11 +15,11 @@ function init() {
 }
 //紀錄當前輸入數字的function
 function storeStr(str) {
-    if(calStr=="0"){  //避免非小數點數字的第一個數字出現零 ex:012
+    if (calStr == "0") {  //避免非小數點數字的第一個數字出現零 ex:012
         calStr = "";
         calStr += str;
-    }else{
-        calStr+=str;
+    } else {
+        calStr += str;
     }
     //console.log("calStr of function storeStr: " + calStr);
     updateShow();   //更新當前輸入數字的div
@@ -56,30 +56,22 @@ function updateOperator(str) {
     var num = Number(arr[arr.length - 1]);
     if (isNaN(num)) {  //如果陣列最後一個值是運算符
         arr.pop();  //將該運算符刪掉
-        if (str == "x") { //如果點選X，加入*
-            arr.push("*");
-        } else if (str == "÷") {
-            arr.push("/");
-        } else {
-            arr.push(str); //推入+和-
-        }
-    } else { //如果最後一個是數字就加入點選的運算符
-        if (str == "x") { //如果點選X，加入*
-            arr.push("*");
-        } else if (str == "÷") {
-            arr.push("/");
-        } else {
-            arr.push(str); //推入+和-
-        }
+    }
+    if (str == "x") { //如果點選X，加入*
+        arr.push("*");
+    } else if (str == "÷") {
+        arr.push("/");
+    } else {
+        arr.push(str); //推入+和-
     }
     updateShow(); //更新當前輸入數字的div
     updateStorage(); //更新運算式的div
 }
 //檢查當前輸入數字是否有點點
 function addPoint() {
-    if (calStr=="") {
+    if (calStr == "") {
         calStr = "0.";
-    }else if(!(calStr.includes("."))){
+    } else if (!(calStr.includes("."))) {
         calStr += ".";
     }
     //console.log("calStr of function addPoint: " + calStr);
@@ -105,51 +97,51 @@ function calSum() {
     updateStorage();   //更新運算式的div
 }
 //刪除字元
-function delStr(){
-    if(calStr == ""){
+function delStr() {
+    if (calStr == "") {
         arr.pop();
         //console.log("arr of function delStr : "+ arr);
-    }else{
-        calStr = calStr.substring(0,calStr.length-1);  //從最後一個字開始刪
+    } else {
+        calStr = calStr.substring(0, calStr.length - 1);  //從最後一個字開始刪
         //console.log("calStr of function delStr : "+ calStr);
     }
     updateShow();
     updateStorage();
 }
 //加入逗號，用來呈現在網頁上的
-function addComma(data){
-    if(data.includes(".")){  //如果數字有小數點，那小數點前才要加逗號
+function addComma(data) {
+    if (data.includes(".")) {  //如果數字有小數點，那小數點前才要加逗號
         //console.log("[ "+data+" ] ");
         return data.replace(/\d(?=(?:\d{3})+\b\.)/g, '$&,');
-    }else{
+    } else {
         //console.log("[ "+data+" ] ");
         return data.replace(/\d(?=(?:\d{3})+\b)/g, '$&,');
     }
 }
 
-function updateShow(answer){
+function updateShow(answer) {
     var showText = "";
-    if(typeof(answer) == "undefined"){ //還沒按=時的情況，幫當前數字加入逗號
+    if (typeof (answer) == "undefined") { //還沒按=時的情況，幫當前數字加入逗號
         showText = addComma(calStr);
-    }else{
+    } else {
         showText = addComma(answer.toString());  //幫答案加入逗號
     }
     show.innerHTML = showText;
     // console.log("arr of function updateShow"+arr);
 }
 
-function updateStorage(){
+function updateStorage() {
     var commaArr = arr.slice(); //複製個需要加入逗號的新陣列，避免汙染到arr
     var storageText = "";
     //console.log("BEFORE commaArr : "+commaArr);
     //console.log("BEFORE commaArr : "+arr); ///這邊還沒汙染arr
-    for(let i =0;i<commaArr.length;i++){
-        commaArr[i]=addComma(commaArr[i]);
+    for (let i = 0; i < commaArr.length; i++) {
+        commaArr[i] = addComma(commaArr[i]);
     }
     //console.log("AFTER commaArr : "+arr); //這邊汙染arr，因為陣列是參考呼叫
-    if(typeof(arr[0])=="undefined"){ //如果還沒儲存值到陣列就先用當前數字來呈現
+    if (typeof (arr[0]) == "undefined") { //如果還沒儲存值到陣列就先用當前數字來呈現
         storageText = addComma(calStr);
-    }else{
+    } else {
         // console.log("calStr of function updateStorage"+calStr);
         // console.log("arr of function updateStorage"+arr.join(""));
         // console.log("commaArr of function updateStorage"+commaArr.join(""));
