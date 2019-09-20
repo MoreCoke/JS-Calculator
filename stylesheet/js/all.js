@@ -64,14 +64,22 @@ function updateOperator(str) {
             arr.push(str); //推入+和-
         }
     } else { //如果最後一個是數字就加入點選的運算符
-        arr.push(str);
+        if (str == "x") { //如果點選X，加入*
+            arr.push("*");
+        } else if (str == "÷") {
+            arr.push("/");
+        } else {
+            arr.push(str); //推入+和-
+        }
     }
     updateShow(); //更新當前輸入數字的div
     updateStorage(); //更新運算式的div
 }
 //檢查當前輸入數字是否有點點
 function addPoint() {
-    if (!(calStr.includes("."))) {
+    if (calStr=="") {
+        calStr = "0.";
+    }else if(!(calStr.includes("."))){
         calStr += ".";
     }
     //console.log("calStr of function addPoint: " + calStr);
@@ -88,8 +96,10 @@ function calSum() {
         sentStr(); //將calStr送入陣列
         //console.log("isNumber!!");
     }
-    //var answer = parseFloat(arrAnswer).toPrecision(12);
-    var answer = eval(arr.join("")); //陣列運算
+    var arrAnswer = eval(arr.join(""));
+    var strAnswer = parseFloat(arrAnswer).toPrecision(12); //處理小數精度問題
+    var answer = parseFloat(strAnswer);
+    //var answer = eval(arr.join("")); //陣列運算
     //console.log("arr of function calSum: " + answer);
     updateShow(answer);  //將答案傳入當前數字的div
     updateStorage();   //更新運算式的div
