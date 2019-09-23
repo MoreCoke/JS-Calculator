@@ -8,7 +8,6 @@ function updateStorage(){
     }
     console.log("AFTER commaArr : "+arr); //這邊汙染arr，因為陣列是參考呼叫
     if(typeof(arr[0])=="undefined"){
-        //console.log("nigger");
         storageText = addComma(calStr);
     }else{
         console.log("calStr of function updateStorage"+calStr);
